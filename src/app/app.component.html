@@ -1,0 +1,28 @@
+{{ title }}
+<ul>
+  <li *ngFor="let item of todoItems$ | async; index as i">
+    <input type="checkbox" [ngModel]="item.isCompleted" (click)="toggleStatus(item)" />
+    {{ item.id }} - {{ item.title }} - {{ item.syncStatus }}
+  </li>
+</ul>
+<hr />
+<ul>
+  <li *ngFor="let item of completedItems$ | async; index as i">
+    <input type="checkbox" [ngModel]="item.isCompleted" (click)="toggleStatus(item)" />
+    {{ item.title }} - {{ item.syncStatus }}
+  </li>
+</ul>
+<hr />
+
+<input [(ngModel)]="newTodo" type="text" />
+<button (click)="addNewTodo()">Add</button>
+<hr />
+
+<button (click)="sync()">Sync</button>
+
+<hr />
+
+{{ (byIdItem$ | async)?.isCompleted }}
+
+<router-outlet></router-outlet>
+r
